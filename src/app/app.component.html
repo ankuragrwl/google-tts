@@ -5,11 +5,11 @@
   </mat-card-header>
   <form [formGroup]="ttsForm">
     <mat-card-content align="center">
-      <mat-form-field style="width: 100%;" required>
+      <mat-form-field class="text-panel" required>
         <input matInput placeholder="API Key" formControlName="apiKey" required> </mat-form-field>
-      <mat-form-field style="width: 100%;" required>
+      <mat-form-field class="text-panel" required>
         <textarea matInput placeholder="Text" formControlName="inputText" required></textarea> </mat-form-field>
-      <mat-form-field style="float:left;">
+      <mat-form-field>
         <mat-select placeholder="Voice Name" formControlName="voiceName" required>
           <mat-option value="en-US-Wavenet-A"> en-US-Wavenet-A </mat-option>
           <mat-option value="en-US-Wavenet-B"> en-US-Wavenet-B </mat-option>
