@@ -1,20 +1,33 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-card class="form-card">
+  <mat-card-header>
+    <mat-card-title>Google Text To Speech</mat-card-title>
+    <mat-card-subtitle>Try out Google TTS API</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="ttsForm">
+    <mat-card-content align="center">
+      <mat-form-field style="width: 100%;" required>
+        <input matInput placeholder="API Key" formControlName="apiKey" required> </mat-form-field>
+      <mat-form-field style="width: 100%;" required>
+        <textarea matInput placeholder="Text" formControlName="inputText" required></textarea> </mat-form-field>
+      <mat-form-field style="float:left;">
+        <mat-select placeholder="Voice Name" formControlName="voiceName" required>
+          <mat-option value="en-US-Wavenet-A"> en-US-Wavenet-A </mat-option>
+          <mat-option value="en-US-Wavenet-B"> en-US-Wavenet-B </mat-option>
+          <mat-option value="en-US-Wavenet-C"> en-US-Wavenet-C </mat-option>
+          <mat-option value="en-US-Wavenet-D"> en-US-Wavenet-D </mat-option>
+          <mat-option value="en-US-Wavenet-E"> en-US-Wavenet-E </mat-option>
+          <mat-option value="en-US-Wavenet-F"> en-US-Wavenet-F </mat-option>
+        </mat-select>
+      </mat-form-field> Speed
+      <mat-slider min="0.25" max="4.00" step="0.04" value="1.00" formControlName="speed" [thumbLabel]="true" #speed></mat-slider>{{speed.value | number:'1.2-2'}} &nbsp;&nbsp;&nbsp;Pitch
+      <mat-slider min="-20.00" max="20.00" step="0.40"
+        value="0.00" [thumbLabel]="true" formControlName="pitch" #pitch></mat-slider>{{pitch.value | number:'1.2-2'}} </mat-card-content>
+  </form>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="!ttsForm.valid" (click)="onSubmit()">SPEAK IT</button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <audio controls *ngIf="res!==undefined" preload="none">
+      <source [src]="res" type="audio/mpeg"> </audio>
+  </mat-card-footer>
+</mat-card>
